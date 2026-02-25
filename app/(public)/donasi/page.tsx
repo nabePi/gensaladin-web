@@ -57,7 +57,7 @@ export default async function DonasiPage() {
             </div>
           ) : (
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {campaigns.map((campaign) => {
+              {campaigns.map((campaign: any) => {
                 const progress = Math.min(
                   Math.round((campaign.raised_amount / campaign.target_amount) * 100),
                   100
