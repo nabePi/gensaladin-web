@@ -1,6 +1,7 @@
 'use client'
 
 import { Button } from '@/components/ui/button'
+import Image from 'next/image'
 import Link from 'next/link'
 import {
   BookOpen,
@@ -18,7 +19,8 @@ import {
   FileText,
   Mail,
   Phone,
-  ChevronRight
+  ChevronRight,
+  MapPin
 } from 'lucide-react'
 import { motion } from 'framer-motion'
 
@@ -78,43 +80,46 @@ const pillars = [
     title: 'Pendidikan & Karakter',
     description: 'Mencetak intelektual muslim yang tidak hanya cerdas secara akademis, tetapi juga memiliki akhlak mulia dan kepemimpinan yang berintegritas.',
     icon: GraduationCap,
-    color: 'from-[#7a1f1f] to-[#9a2f2f]'
+    color: 'from-[#7a1f1f] to-[#9a2f2f]',
+    image: '/images/pilar-education.png'
   },
   {
     number: '02',
     title: 'Literasi & Dakwah Digital',
     description: 'Memanfaatkan kekuatan digital untuk menyebarkan ilmu dan nilai-nilai keislaman secara masif, kreatif, dan relevan dengan zaman.',
     icon: Monitor,
-    color: 'from-[#b07b3a] to-[#d5a25a]'
+    color: 'from-[#b07b3a] to-[#d5a25a]',
+    image: '/images/pilar-digital.jpeg'
   },
   {
     number: '03',
     title: 'Kolaborasi & Aksi Sosial',
     description: 'Membangun jaringan kebaikan melalui kerja sama strategis dan aksi nyata yang memberikan dampak positif bagi masyarakat.',
     icon: Handshake,
-    color: 'from-[#5d1414] to-[#7a1f1f]'
+    color: 'from-[#5d1414] to-[#7a1f1f]',
+    image: '/images/pilar-kolaborasi.png'
   }
 ]
 
 // Team data
 const team = [
   {
-    initials: 'EH',
     name: 'Edgar Hamas',
     role: 'Pendiri Yayasan',
-    description: 'Visioner di balik terbentuknya GenSaladin dengan komitmen membentuk generasi berkarakter'
+    description: 'Visioner di balik terbentuknya GenSaladin dengan komitmen membentuk generasi berkarakter',
+    image: '/images/edgar-hamas.png'
   },
   {
-    initials: 'AA',
     name: 'Amar Ar-Risalah',
     role: 'Narasumber',
-    description: 'Pembawa wacana keislaman yang mendalam dengan pendekatan yang menggugah dan inspiratif'
+    description: 'Pembawa wacana keislaman yang mendalam dengan pendekatan yang menggugah dan inspiratif',
+    image: '/images/amar-ar-risalah.jpeg'
   },
   {
-    initials: 'UE',
     name: 'Umar El-Rozy',
     role: 'Digital Advisor',
-    description: 'Mengarahkan strategi digital untuk menjangkau lebih banyak generasi muda secara efektif'
+    description: 'Mengarahkan strategi digital untuk menjangkau lebih banyak generasi muda secara efektif',
+    image: '/images/umar-el-rozy.png'
   }
 ]
 
@@ -128,19 +133,31 @@ const stats = [
 export default function HomePage() {
   return (
     <div className="overflow-hidden">
-      {/* Hero Section - Warm gradient with organic shapes */}
-      <section className="relative min-h-[90vh] flex items-center justify-center overflow-hidden">
-        {/* Background gradient */}
-        <div className="absolute inset-0 bg-gradient-to-br from-[#f6f1e9] via-[#fbf7f0] to-[#f6f1e9]" />
+      {/* Hero Section - With Al-Quds background image */}
+      <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
+        {/* Background Image with Overlay */}
+        <div className="absolute inset-0">
+          <Image
+            src="/images/hero-bg.jpeg"
+            alt="Al-Quds"
+            fill
+            className="object-cover"
+            priority
+            quality={95}
+            sizes="100vw"
+          />
+          {/* Multi-layer overlay for depth */}
+          <div className="absolute inset-0 bg-gradient-to-b from-[#7a1f1f]/80 via-[#5d1414]/70 to-[#5d1414]/90" />
+          <div className="absolute inset-0 bg-gradient-to-r from-black/40 via-transparent to-black/40" />
+        </div>
 
-        {/* Decorative organic shapes */}
-        <div className="absolute top-20 left-10 w-72 h-72 bg-[#7a1f1f]/5 rounded-full blur-3xl" />
+        {/* Decorative elements */}
+        <div className="absolute top-20 left-10 w-72 h-72 bg-[#b07b3a]/20 rounded-full blur-3xl" />
         <div className="absolute bottom-20 right-10 w-96 h-96 bg-[#b07b3a]/10 rounded-full blur-3xl" />
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-gradient-to-r from-[#7a1f1f]/3 to-[#b07b3a]/5 rounded-full blur-3xl" />
 
         {/* Islamic geometric pattern overlay */}
-        <div className="absolute inset-0 opacity-[0.02]" style={{
-          backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M30 0L60 30L30 60L0 30L30 0z' fill='%237a1f1f' fill-opacity='1'/%3E%3C/svg%3E")`,
+        <div className="absolute inset-0 opacity-[0.03]" style={{
+          backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M30 0L60 30L30 60L0 30L30 0z' fill='%23ffffff' fill-opacity='1'/%3E%3C/svg%3E")`,
           backgroundSize: '60px 60px'
         }} />
 
@@ -150,27 +167,35 @@ export default function HomePage() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
           >
+            {/* Location badge */}
+            <div className="inline-flex items-center gap-2 px-4 py-2 bg-white/10 backdrop-blur-sm rounded-full mb-6 border border-white/20">
+              <MapPin className="w-4 h-4 text-[#b07b3a]" />
+              <span className="text-sm font-medium text-white/90 tracking-wide">
+                Menuju Al-Quds
+              </span>
+            </div>
+
             {/* Tagline badge */}
-            <div className="inline-flex items-center gap-2 px-4 py-2 bg-[#7a1f1f]/10 rounded-full mb-8">
+            <div className="inline-flex items-center gap-2 px-4 py-2 bg-[#b07b3a]/20 backdrop-blur-sm rounded-full mb-8 border border-[#b07b3a]/30">
               <Sparkles className="w-4 h-4 text-[#b07b3a]" />
-              <span className="text-sm font-medium text-[#7a1f1f] tracking-wide">
+              <span className="text-sm font-medium text-white tracking-wide">
                 Yayasan Saladin Peradaban Berilmu
               </span>
             </div>
 
             {/* Main heading */}
-            <h1 className="font-serif text-5xl md:text-7xl lg:text-8xl font-bold text-[#7a1f1f] mb-6 leading-[1.1]">
+            <h1 className="font-serif text-5xl md:text-7xl lg:text-8xl font-bold text-white mb-6 leading-[1.1] drop-shadow-lg">
               Learn History,
               <br />
               <span className="text-[#b07b3a]">Repeat Victory</span>
             </h1>
 
             {/* Subtitle */}
-            <p className="text-lg md:text-xl text-[#14110f]/70 max-w-2xl mx-auto mb-4 font-medium">
+            <p className="text-lg md:text-xl text-white/90 max-w-2xl mx-auto mb-4 font-medium drop-shadow">
               Gerakan Peradaban Berilmu
             </p>
 
-            <p className="text-base md:text-lg text-[#14110f]/60 max-w-xl mx-auto mb-10 leading-relaxed">
+            <p className="text-base md:text-lg text-white/70 max-w-xl mx-auto mb-10 leading-relaxed">
               Sejarah bukan dekorasi. Ia senjata: untuk membentuk karakter,
               menajamkan visi, dan melahirkan kemenangan yang beradab.
             </p>
@@ -180,7 +205,7 @@ export default function HomePage() {
               <Link href="/about">
                 <Button
                   size="lg"
-                  className="bg-[#7a1f1f] hover:bg-[#5d1414] text-white px-8 py-6 text-base rounded-full shadow-lg shadow-[#7a1f1f]/20 transition-all hover:shadow-xl hover:shadow-[#7a1f1f]/30 hover:-translate-y-0.5"
+                  className="bg-[#b07b3a] hover:bg-[#d5a25a] text-white px-8 py-6 text-base rounded-full shadow-lg shadow-[#b07b3a]/30 transition-all hover:shadow-xl hover:shadow-[#b07b3a]/40 hover:-translate-y-0.5"
                 >
                   Pelajari Kami
                   <ArrowRight className="ml-2 w-4 h-4" />
@@ -190,7 +215,7 @@ export default function HomePage() {
                 <Button
                   size="lg"
                   variant="outline"
-                  className="border-2 border-[#7a1f1f]/30 text-[#7a1f1f] hover:bg-[#7a1f1f]/5 px-8 py-6 text-base rounded-full transition-all hover:border-[#7a1f1f]/50"
+                  className="border-2 border-white/30 text-white hover:bg-white/10 px-8 py-6 text-base rounded-full transition-all hover:border-white/50 backdrop-blur-sm"
                 >
                   Mulai Belajar
                 </Button>
@@ -205,13 +230,16 @@ export default function HomePage() {
           animate={{ y: [0, 8, 0] }}
           transition={{ duration: 2, repeat: Infinity }}
         >
-          <div className="w-6 h-10 border-2 border-[#7a1f1f]/30 rounded-full flex justify-center pt-2">
-            <div className="w-1.5 h-3 bg-[#7a1f1f]/50 rounded-full" />
+          <div className="w-6 h-10 border-2 border-white/30 rounded-full flex justify-center pt-2">
+            <div className="w-1.5 h-3 bg-white/50 rounded-full" />
           </div>
         </motion.div>
+
+        {/* Bottom gradient fade */}
+        <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-[#f6f1e9] to-transparent" />
       </section>
 
-      {/* Who We Are Section */}
+      {/* Who We Are Section - With Image */}
       <section className="py-24 md:py-32 relative">
         <div className="max-w-6xl mx-auto px-4">
           <div className="grid lg:grid-cols-2 gap-16 items-center">
@@ -257,7 +285,7 @@ export default function HomePage() {
               </div>
             </motion.div>
 
-            {/* Right content - Problem statement */}
+            {/* Right content - Image Card */}
             <motion.div
               initial={{ opacity: 0, x: 30 }}
               whileInView={{ opacity: 1, x: 0 }}
@@ -265,41 +293,81 @@ export default function HomePage() {
               transition={{ duration: 0.8, delay: 0.2 }}
               className="relative"
             >
-              {/* Quote card */}
-              <div className="relative bg-[#7a1f1f] text-white p-8 md:p-10 rounded-2xl shadow-2xl">
-                <Quote className="absolute top-6 left-6 w-10 h-10 text-white/20" />
-
-                <div className="relative z-10 pt-6">
-                  <p className="text-xl md:text-2xl font-serif italic leading-relaxed mb-6">
-                    &ldquo;Mereka melek gadget, tapi buta sejarah; aktif di media sosial, tapi rapuh secara nilai.&rdquo;
-                  </p>
-
-                  <div className="h-px bg-white/20 mb-6" />
-
-                  <div className="space-y-3">
-                    <div className="flex items-center gap-3">
-                      <div className="w-2 h-2 bg-[#b07b3a] rounded-full" />
-                      <p className="text-white/80 text-sm">61% literasi sejarah rendah di kalangan pemuda</p>
-                    </div>
-                    <div className="flex items-center gap-3">
-                      <div className="w-2 h-2 bg-[#b07b3a] rounded-full" />
-                      <p className="text-white/80 text-sm">Generasi tanpa fondasi nilai dan identitas</p>
-                    </div>
-                  </div>
+              {/* Main Image */}
+              <div className="relative rounded-2xl overflow-hidden shadow-2xl">
+                <div className="aspect-[4/3] relative">
+                  <Image
+                    src="/images/jerusalem-hillside.jpeg"
+                    alt="Jerusalem Hillside - Kota Peradaban"
+                    fill
+                    className="object-cover"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#5d1414]/60 via-transparent to-[#5d1414]/20" />
                 </div>
 
-                {/* Decorative corner */}
-                <div className="absolute bottom-0 right-0 w-32 h-32 bg-[#b07b3a]/20 rounded-tl-full" />
+                {/* Caption overlay - positioned at top */}
+                <div className="absolute top-0 left-0 right-0 p-6 bg-gradient-to-b from-[#5d1414]/60 to-transparent">
+                  <p className="text-white font-serif text-lg md:text-xl italic drop-shadow-lg">
+                    &ldquo;Membangkitkan kesadaran keumatan melalui tadabbur sejarah&rdquo;
+                  </p>
+                </div>
               </div>
 
-              {/* Floating stat */}
-              <div className="absolute -bottom-6 -left-6 bg-[#fbf7f0] p-4 rounded-xl shadow-lg border border-[#14110f]/5">
-                <p className="text-3xl font-bold text-[#7a1f1f]">2025</p>
-                <p className="text-sm text-[#14110f]/60">Tahun Berdiri</p>
+              {/* Floating stat card - positioned at bottom right */}
+              <div className="absolute -bottom-6 -right-6 bg-[#7a1f1f] text-white p-5 rounded-xl shadow-xl">
+                <p className="text-4xl font-bold">2025</p>
+                <p className="text-sm text-white/80">Tahun Berdiri</p>
               </div>
+
+              {/* Decorative element */}
+              <div className="absolute -top-4 -left-4 w-24 h-24 border-2 border-[#b07b3a]/30 rounded-xl -z-10" />
             </motion.div>
           </div>
         </div>
+      </section>
+
+      {/* Problem Statement Section - Compact Design */}
+      <section className="py-16 md:py-20 bg-[#5d1414] relative overflow-hidden">
+        <div className="max-w-4xl mx-auto px-4 relative z-10">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="text-center"
+          >
+            <Quote className="w-10 h-10 text-[#b07b3a] mx-auto mb-6" />
+
+            <h2 className="font-serif text-2xl md:text-3xl lg:text-4xl font-bold text-white mb-8 leading-tight max-w-3xl mx-auto">
+              Mereka melek gadget, tapi buta sejarah; aktif di media sosial, tapi rapuh secara nilai.
+            </h2>
+
+            <div className="flex flex-wrap justify-center gap-4 md:gap-8 mb-8">
+              <div className="flex items-center gap-2 bg-white/10 px-4 py-2 rounded-full">
+                <div className="w-2 h-2 bg-[#b07b3a] rounded-full" />
+                <p className="text-white/90 text-sm">61% literasi sejarah rendah</p>
+              </div>
+              <div className="flex items-center gap-2 bg-white/10 px-4 py-2 rounded-full">
+                <div className="w-2 h-2 bg-[#b07b3a] rounded-full" />
+                <p className="text-white/90 text-sm">Tanpa fondasi nilai</p>
+              </div>
+              <div className="flex items-center gap-2 bg-white/10 px-4 py-2 rounded-full">
+                <div className="w-2 h-2 bg-[#b07b3a] rounded-full" />
+                <p className="text-white/90 text-sm">Konten edukatif minim</p>
+              </div>
+            </div>
+
+            <p className="text-white/60 italic text-sm md:text-base">
+              Dibutuhkan ekosistem: ilmu yang shahih, cara penyampaian yang relevan, dan komunitas yang sehat.
+            </p>
+          </motion.div>
+        </div>
+
+        {/* Subtle background pattern */}
+        <div className="absolute inset-0 opacity-[0.02]" style={{
+          backgroundImage: `url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23ffffff' fill-opacity='1' fill-rule='evenodd'%3E%3Cpath d='M0 40L40 0H20L0 20M40 40V20L20 40'/%3E%3C/g%3E%3C/svg%3E")`,
+          backgroundSize: '40px 40px'
+        }} />
       </section>
 
       {/* Our Mission Section */}
@@ -356,7 +424,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Three Pillars Section - Enhanced */}
+      {/* Three Pillars Section - With Images */}
       <section className="py-24 md:py-32 relative overflow-hidden">
         <div className="max-w-6xl mx-auto px-4">
           <motion.div
@@ -376,45 +444,62 @@ export default function HomePage() {
             </p>
           </motion.div>
 
-          <div className="space-y-8">
+          <div className="space-y-16">
             {pillars.map((pillar, index) => (
               <motion.div
                 key={index}
-                initial={{ opacity: 0, x: index % 2 === 0 ? -30 : 30 }}
-                whileInView={{ opacity: 1, x: 0 }}
+                initial={{ opacity: 0, y: 40 }}
+                whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
+                transition={{ duration: 0.8, delay: index * 0.1 }}
                 className={`flex flex-col ${index % 2 === 0 ? 'lg:flex-row' : 'lg:flex-row-reverse'} gap-8 items-center`}
               >
-                {/* Visual side */}
-                <div className="w-full lg:w-2/5">
-                  <div className={`relative bg-gradient-to-br ${pillar.color} p-8 rounded-3xl text-white overflow-hidden min-h-[280px] flex flex-col justify-between`}>
-                    {/* Large number */}
-                    <span className="text-8xl font-bold opacity-20 absolute top-4 right-4">
-                      {pillar.number}
-                    </span>
+                {/* Visual side with Image */}
+                <div className="w-full lg:w-1/2">
+                  <div className="relative group">
+                    {/* Image container */}
+                    <div className="relative rounded-3xl overflow-hidden shadow-2xl">
+                      <div className="aspect-[4/3] relative">
+                        <Image
+                          src={pillar.image}
+                          alt={pillar.title}
+                          fill
+                          className="object-cover transition-transform duration-700 group-hover:scale-105"
+                        />
+                        {/* Gradient overlay */}
+                        <div className={`absolute inset-0 bg-gradient-to-br ${pillar.color} opacity-60 mix-blend-multiply`} />
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
+                      </div>
 
-                    {/* Icon */}
-                    <div className="relative z-10 w-16 h-16 bg-white/20 rounded-2xl flex items-center justify-center backdrop-blur-sm">
-                      <pillar.icon className="w-8 h-8 text-white" />
+                      {/* Content overlay */}
+                      <div className="absolute inset-0 p-8 flex flex-col justify-between">
+                        {/* Number */}
+                        <span className="text-7xl font-bold text-white/20">
+                          {pillar.number}
+                        </span>
+
+                        {/* Bottom content */}
+                        <div>
+                          <div className="w-14 h-14 bg-white/20 backdrop-blur-sm rounded-2xl flex items-center justify-center mb-4">
+                            <pillar.icon className="w-7 h-7 text-white" />
+                          </div>
+                          <p className="text-white/70 text-sm mb-1">Pilar {pillar.number}</p>
+                          <h3 className="font-serif text-2xl font-bold text-white">
+                            {pillar.title}
+                          </h3>
+                        </div>
+                      </div>
                     </div>
 
-                    {/* Title on card */}
-                    <div className="relative z-10">
-                      <p className="text-white/70 text-sm mb-1">Pilar {pillar.number}</p>
-                      <h3 className="font-serif text-2xl font-bold">{pillar.title}</h3>
-                    </div>
-
-                    {/* Decorative circles */}
-                    <div className="absolute -bottom-10 -left-10 w-40 h-40 bg-white/10 rounded-full" />
-                    <div className="absolute -top-10 -right-10 w-32 h-32 bg-white/5 rounded-full" />
+                    {/* Decorative corner */}
+                    <div className="absolute -bottom-3 -right-3 w-full h-full border-2 border-[#b07b3a]/30 rounded-3xl -z-10" />
                   </div>
                 </div>
 
                 {/* Content side */}
-                <div className="w-full lg:w-3/5">
-                  <div className="bg-[#fbf7f0] p-8 rounded-2xl border border-[#14110f]/5">
-                    <h3 className="font-serif text-2xl font-bold text-[#7a1f1f] mb-4 lg:hidden">
+                <div className="w-full lg:w-1/2">
+                  <div className="bg-[#fbf7f0] p-8 md:p-10 rounded-2xl border border-[#14110f]/5">
+                    <h3 className="font-serif text-2xl font-bold text-[#7a1f1f] mb-4">
                       {pillar.title}
                     </h3>
                     <p className="text-[#14110f]/70 text-lg leading-relaxed mb-6">
@@ -469,12 +554,15 @@ export default function HomePage() {
                 className="group text-center"
               >
                 {/* Avatar */}
-                <div className="relative mx-auto w-32 h-32 mb-6">
+                <div className="relative mx-auto w-40 h-40 mb-6">
                   <div className="absolute inset-0 bg-gradient-to-br from-[#7a1f1f] to-[#b07b3a] rounded-full opacity-20 group-hover:opacity-30 transition-opacity" />
-                  <div className="absolute inset-1 bg-[#f6f1e9] rounded-full flex items-center justify-center">
-                    <span className="font-serif text-3xl font-bold text-[#7a1f1f]">
-                      {member.initials}
-                    </span>
+                  <div className="absolute inset-1 rounded-full overflow-hidden bg-[#f6f1e9]">
+                    <Image
+                      src={member.image}
+                      alt={member.name}
+                      fill
+                      className="object-cover object-top"
+                    />
                   </div>
                   {/* Decorative ring */}
                   <div className="absolute inset-0 rounded-full border-2 border-dashed border-[#b07b3a]/30 group-hover:rotate-180 transition-transform duration-700" />
@@ -583,6 +671,17 @@ export default function HomePage() {
       <section className="py-24 md:py-32 relative overflow-hidden">
         {/* Background */}
         <div className="absolute inset-0 bg-gradient-to-br from-[#7a1f1f] to-[#5d1414]" />
+
+        {/* Background Image with Overlay */}
+        <div className="absolute inset-0">
+          <Image
+            src="/images/dome-of-rock.png"
+            alt=""
+            fill
+            className="object-cover opacity-20"
+          />
+          <div className="absolute inset-0 bg-gradient-to-br from-[#7a1f1f]/90 to-[#5d1414]/95" />
+        </div>
 
         {/* Decorative elements */}
         <div className="absolute top-0 left-0 w-full h-full overflow-hidden">

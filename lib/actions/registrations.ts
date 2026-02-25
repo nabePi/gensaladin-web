@@ -1,10 +1,29 @@
 'use server'
 
 import { supabase, supabaseAdmin } from '@/lib/db/supabase'
+import { sendRegistrationConfirmation } from '@/lib/email/resend'
 import { revalidatePath } from 'next/cache'
+import { format } from 'date-fns'
+import { id } from 'date-fns/locale'
 
 export async function registerForEvent(eventId: string, userId: string) {
   try {
+    // Get event details first for email
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const { data: event } = await (supabase as any)
+      .from('events')
+      .select('*')
+      .eq('id', eventId)
+      .single()
+
+    // Get user details
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const { data: user } = await (supabase as any)
+      .from('users')
+      .select('email, name')
+      .eq('id', userId)
+      .single()
+
     // Call the database function for atomic registration
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const { data, error } = await (supabaseAdmin as any)
@@ -16,6 +35,19 @@ export async function registerForEvent(eventId: string, userId: string) {
     if (error) {
       console.error('Registration error:', error)
       return { success: false, error: error.message }
+    }
+
+    // Send confirmation email
+    if (user?.email && event) {
+      const formattedDate = format(new Date(event.date), "EEEE, d MMMM yyyy 'pukul' HH:mm", { locale: id })
+
+      await sendRegistrationConfirmation(
+        user.email,
+        event.title,
+        formattedDate,
+        event.location,
+        event.slug
+      )
     }
 
     // Revalidate the event page to update count
