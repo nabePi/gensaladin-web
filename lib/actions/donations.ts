@@ -27,7 +27,7 @@ export async function createDonation({
 
     // Create donation record in database
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const { data: donation, error: dbError } = await (supabaseAdmin as any)
+    const { error: dbError } = await (supabaseAdmin as any)
       .from('donations')
       .insert({
         order_id: orderId,
@@ -39,8 +39,6 @@ export async function createDonation({
         message: message || null,
         payment_status: 'pending',
       })
-      .select()
-      .single()
 
     if (dbError) {
       console.error('Database error:', dbError)
