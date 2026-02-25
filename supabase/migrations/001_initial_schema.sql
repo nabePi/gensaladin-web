@@ -245,3 +245,16 @@ create trigger events_updated_at
 create trigger contents_updated_at
   before update on contents
   for each row execute function update_updated_at();
+
+-- Function to decrement event count (for cancellations)
+create or replace function decrement_event_count(
+  p_event_id uuid
+) returns void
+language plpgsql
+as $$
+begin
+  update events
+  set registered_count = greatest(registered_count - 1, 0)
+  where id = p_event_id;
+end;
+$$;
