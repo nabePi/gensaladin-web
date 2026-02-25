@@ -8,6 +8,15 @@ export const metadata: Metadata = {
   description: 'Dukung program dakwah dan pendidikan Yayasan Saladin Peradaban Berilmu',
 }
 
+interface Campaign {
+  id: string
+  slug: string
+  title: string
+  description: string | null
+  raised_amount: number
+  target_amount: number
+}
+
 export default async function DonasiPage() {
   const campaigns = await getActiveCampaigns()
 
@@ -57,7 +66,7 @@ export default async function DonasiPage() {
             </div>
           ) : (
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {campaigns.map((campaign: any) => {
+              {campaigns.map((campaign: Campaign) => {
                 const progress = Math.min(
                   Math.round((campaign.raised_amount / campaign.target_amount) * 100),
                   100
