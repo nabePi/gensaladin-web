@@ -2,19 +2,15 @@
 
 import { supabaseAdmin } from '@/lib/db/supabase'
 import { revalidatePath } from 'next/cache'
+import { Database } from '@/lib/db/types'
+
+type Event = Database['public']['Tables']['events']['Row']
+type EventInsert = Database['public']['Tables']['events']['Insert']
 
 // Events
-export async function createEvent(data: {
-  title: string
-  slug: string
-  description: string
-  date: string
-  location: string
-  type: string
-  capacity: number
-  status: string
-}) {
-  const { error } = await supabaseAdmin
+export async function createEvent(data: EventInsert) {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const { error } = await (supabaseAdmin as any)
     .from('events')
     .insert(data)
 
@@ -36,7 +32,8 @@ export async function updateEvent(id: string, data: Partial<{
   status: string
   slug: string
 }>) {
-  const { error } = await supabaseAdmin
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const { error } = await (supabaseAdmin as any)
     .from('events')
     .update(data)
     .eq('id', id)
@@ -67,7 +64,7 @@ export async function deleteEvent(id: string) {
 }
 
 // Get all events (including drafts)
-export async function getAllEvents() {
+export async function getAllEvents(): Promise<Event[]> {
   const { data, error } = await supabaseAdmin
     .from('events')
     .select('*')
@@ -98,16 +95,12 @@ export async function getEventRegistrations(eventId: string) {
   return data || []
 }
 
+type ContentInsert = Database['public']['Tables']['contents']['Insert']
+
 // Content management
-export async function createContent(data: {
-  title: string
-  slug: string
-  type: string
-  body: string
-  excerpt: string
-  status: string
-}) {
-  const { error } = await supabaseAdmin
+export async function createContent(data: ContentInsert) {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const { error } = await (supabaseAdmin as any)
     .from('contents')
     .insert(data)
 
@@ -163,7 +156,8 @@ export async function getAdminStats() {
     supabaseAdmin.from('donations').select('amount').eq('payment_status', 'completed')
   ])
 
-  const totalDonations = donations?.reduce((sum, d) => sum + d.amount, 0) || 0
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const totalDonations = (donations as any[] | null)?.reduce((sum, d) => sum + (d.amount || 0), 0) || 0
 
   return {
     totalUsers: totalUsers || 0,

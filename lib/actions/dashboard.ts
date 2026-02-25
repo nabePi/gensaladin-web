@@ -1,8 +1,13 @@
 'use server'
 
 import { supabase } from '@/lib/db/supabase'
+import { Database } from '@/lib/db/types'
 
-export async function getUserRegistrations(userId: string) {
+type RegistrationWithEvent = Database['public']['Tables']['event_registrations']['Row'] & {
+  events: Database['public']['Tables']['events']['Row']
+}
+
+export async function getUserRegistrations(userId: string): Promise<RegistrationWithEvent[]> {
   const { data, error } = await supabase
     .from('event_registrations')
     .select(`
@@ -17,7 +22,7 @@ export async function getUserRegistrations(userId: string) {
     return []
   }
 
-  return data || []
+  return (data || []) as RegistrationWithEvent[]
 }
 
 export async function getUserProgress(userId: string) {
@@ -38,7 +43,8 @@ export async function getUserProgress(userId: string) {
 }
 
 export async function updateProfile(userId: string, data: { name: string }) {
-  const { error } = await supabase
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const { error } = await (supabase as any)
     .from('users')
     .update({ name: data.name })
     .eq('id', userId)

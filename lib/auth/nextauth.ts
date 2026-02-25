@@ -24,7 +24,8 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
           .select('role')
           .eq('id', user.id)
           .single()
-        session.user.role = userData?.role || 'member'
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        session.user.role = (userData as any)?.role || 'member'
       }
       return session
     }

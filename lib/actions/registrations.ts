@@ -6,7 +6,8 @@ import { revalidatePath } from 'next/cache'
 export async function registerForEvent(eventId: string, userId: string) {
   try {
     // Call the database function for atomic registration
-    const { data, error } = await supabaseAdmin
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const { data, error } = await (supabaseAdmin as any)
       .rpc('register_for_event', {
         p_event_id: eventId,
         p_user_id: userId
@@ -43,7 +44,8 @@ export async function checkRegistrationStatus(eventId: string, userId: string) {
 }
 
 export async function cancelRegistration(eventId: string, userId: string) {
-  const { error } = await supabase
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const { error } = await (supabase as any)
     .from('event_registrations')
     .update({ status: 'cancelled' })
     .eq('event_id', eventId)
@@ -54,7 +56,8 @@ export async function cancelRegistration(eventId: string, userId: string) {
   }
 
   // Decrement event count
-  await supabaseAdmin
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  await (supabaseAdmin as any)
     .rpc('decrement_event_count', { p_event_id: eventId })
 
   revalidatePath('/events/[slug]')

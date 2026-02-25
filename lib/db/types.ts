@@ -44,6 +44,22 @@ export type Database = {
           created_at: string
           updated_at: string
         }
+        Insert: {
+          id?: string
+          title: string
+          slug: string
+          description?: string | null
+          date: string
+          location: string
+          type?: 'kajian' | 'workshop' | 'rihlah' | 'camp' | 'seminar' | 'onedayclass' | null
+          capacity?: number
+          registered_count?: number
+          status?: 'draft' | 'published' | 'ongoing' | 'completed' | 'cancelled'
+          image_url?: string | null
+          created_by?: string | null
+          created_at?: string
+          updated_at?: string
+        }
       }
       event_registrations: {
         Row: {
@@ -100,6 +116,20 @@ export type Database = {
           published_at: string | null
           created_at: string
           updated_at: string
+        }
+        Insert: {
+          id?: string
+          title: string
+          slug: string
+          type?: 'article' | 'vault_entry' | 'announcement' | null
+          body?: string | null
+          excerpt?: string | null
+          image_url?: string | null
+          author_id?: string | null
+          status?: 'draft' | 'published' | 'archived'
+          published_at?: string | null
+          created_at?: string
+          updated_at?: string
         }
       }
       learning_paths: {

@@ -4,7 +4,7 @@ import { useState } from 'react'
 import { format } from 'date-fns'
 import { id } from 'date-fns/locale'
 import { Button } from '@/components/ui/button'
-import { registerForEvent, checkRegistrationStatus } from '@/lib/actions/registrations'
+import { registerForEvent } from '@/lib/actions/registrations'
 import { useSession } from 'next-auth/react'
 import Link from 'next/link'
 

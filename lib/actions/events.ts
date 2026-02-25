@@ -8,10 +8,12 @@ interface Event {
   slug: string
   date: string
   location: string
+  type: string
   registered_count: number
   capacity: number
   status: string
-  description?: string
+  description: string
+  image_url: string | null
 }
 
 export async function getEvents(): Promise<Event[]> {
@@ -30,7 +32,7 @@ export async function getEvents(): Promise<Event[]> {
   return (data as Event[]) || []
 }
 
-export async function getEventBySlug(slug: string) {
+export async function getEventBySlug(slug: string): Promise<Event | null> {
   const { data, error } = await supabase
     .from('events')
     .select('*')
@@ -43,5 +45,5 @@ export async function getEventBySlug(slug: string) {
     return null
   }
 
-  return data
+  return data as Event | null
 }
