@@ -2,7 +2,19 @@
 
 import { supabase } from '@/lib/db/supabase'
 
-export async function getEvents() {
+interface Event {
+  id: string
+  title: string
+  slug: string
+  date: string
+  location: string
+  registered_count: number
+  capacity: number
+  status: string
+  description?: string
+}
+
+export async function getEvents(): Promise<Event[]> {
   const { data, error } = await supabase
     .from('events')
     .select('*')
@@ -15,7 +27,7 @@ export async function getEvents() {
     return []
   }
 
-  return data || []
+  return (data as Event[]) || []
 }
 
 export async function getEventBySlug(slug: string) {

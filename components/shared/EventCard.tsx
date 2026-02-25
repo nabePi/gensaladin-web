@@ -1,6 +1,5 @@
 import Link from 'next/link'
 import { format } from 'date-fns'
-import { id } from 'date-fns/locale'
 import { Button } from '@/components/ui/button'
 
 interface Event {
