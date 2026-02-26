@@ -19,8 +19,7 @@ import {
   FileText,
   Mail,
   Phone,
-  ChevronRight,
-  MapPin
+  ChevronRight
 } from 'lucide-react'
 import { motion } from 'framer-motion'
 
@@ -167,14 +166,6 @@ export default function HomePage() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
           >
-            {/* Location badge */}
-            <div className="inline-flex items-center gap-2 px-4 py-2 bg-white/10 backdrop-blur-sm rounded-full mb-6 border border-white/20">
-              <MapPin className="w-4 h-4 text-[#b07b3a]" />
-              <span className="text-sm font-medium text-white/90 tracking-wide">
-                Menuju Al-Quds
-              </span>
-            </div>
-
             {/* Tagline badge */}
             <div className="inline-flex items-center gap-2 px-4 py-2 bg-[#b07b3a]/20 backdrop-blur-sm rounded-full mb-8 border border-[#b07b3a]/30">
               <Sparkles className="w-4 h-4 text-[#b07b3a]" />
