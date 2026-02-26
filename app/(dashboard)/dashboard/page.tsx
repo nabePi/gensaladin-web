@@ -5,6 +5,8 @@ import Link from 'next/link'
 import { format } from 'date-fns'
 import { id } from 'date-fns/locale'
 
+export const dynamic = 'force-dynamic'
+
 export default async function DashboardPage() {
   const session = await auth()
 

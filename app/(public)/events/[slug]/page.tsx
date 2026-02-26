@@ -5,6 +5,8 @@ import { supabase } from '@/lib/db/supabase'
 import { Metadata } from 'next'
 import { notFound } from 'next/navigation'
 
+export const dynamic = 'force-dynamic'
+
 interface Props {
   params: { slug: string }
 }
