@@ -91,10 +91,12 @@ export default function EventForm({ event }: EventFormProps) {
         ...formData,
         capacity: Number(formData.capacity),
         date: new Date(formData.date).toISOString(),
+        type: formData.type as 'kajian' | 'workshop' | 'rihlah' | 'camp' | 'seminar' | 'onedayclass',
+        status: formData.status as 'draft' | 'published' | 'ongoing' | 'completed' | 'cancelled',
       }
 
       const result = isEditing
-        ? await updateEvent(event.id, data)
+        ? await updateEvent(event!.id, data)
         : await createEvent(data)
 
       if (result.success) {

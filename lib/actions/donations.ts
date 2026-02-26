@@ -65,7 +65,7 @@ export async function createDonation({
       amount,
       itemName: `Donasi ${campaignName}`,
       customerName: donorName,
-      donorEmail,
+      customerEmail: donorEmail,
     })
 
     if (!transaction.success) {
