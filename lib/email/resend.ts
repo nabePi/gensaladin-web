@@ -11,7 +11,7 @@ function getResend() {
 }
 
 const FROM_EMAIL = 'GenSaladin <noreply@gensaladin.id>'
-const APP_URL = process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:3000'
+const APP_URL = process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:3099'
 
 interface SendEmailParams {
   to: string
