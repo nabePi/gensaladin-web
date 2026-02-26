@@ -41,7 +41,7 @@ COPY --from=builder /app/.next/standalone ./
 COPY --from=builder /app/.next/static ./.next/static
 
 # Expose port
-EXPOSE 3099
+EXPOSE 3000
 
 # Start the application
 CMD ["node", "server.js"]
