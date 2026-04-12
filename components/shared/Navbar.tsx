@@ -52,23 +52,23 @@ export function Navbar() {
           </Link>
 
           {/* Desktop Menu */}
-          <div className="hidden md:flex items-center gap-8">
-            <Link href="/programs" className="group relative py-2 text-[15px] font-bold text-[#4a3320] hover:text-[#7a1f1f] transition-colors flex items-center gap-2">
-              <FaRocket className="w-5 h-5 text-[#b07b3a] group-hover:-translate-y-1 group-hover:translate-x-1 group-hover:text-[#7a1f1f] transition-all duration-500" /> 
+          <div className="hidden md:flex items-center gap-6">
+            <Link href="/programs" className="group relative px-3 py-2 rounded-lg text-[15px] font-bold text-[#4a3320] hover:text-[#7a1f1f] hover:bg-[#7a1f1f]/5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#7a1f1f]/40 transition-all duration-300 flex items-center gap-2">
+              <FaRocket className="w-5 h-5 text-[#b07b3a] group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-[#7a1f1f] transition-all duration-300" />
               <span>Program</span>
-              <span className="absolute bottom-0 left-0 w-0 h-[3px] bg-gradient-to-r from-[#7a1f1f] to-[#b07b3a] rounded-full transition-all duration-300 group-hover:w-full"></span>
+              <span className="absolute bottom-0 left-3 w-0 h-[3px] bg-gradient-to-r from-[#7a1f1f] to-[#b07b3a] rounded-full transition-all duration-300 group-hover:w-[calc(100%-24px)]"></span>
             </Link>
-            <Link href="/bergabung" className="group relative py-2 text-[15px] font-bold text-[#4a3320] hover:text-[#7a1f1f] transition-colors flex items-center gap-2">
-              <FaHandshakeAngle className="w-[22px] h-[22px] text-[#b07b3a] group-hover:-translate-y-1 group-hover:text-[#7a1f1f] transition-all duration-300" /> 
+            <Link href="/bergabung" className="group relative px-3 py-2 rounded-lg text-[15px] font-bold text-[#4a3320] hover:text-[#7a1f1f] hover:bg-[#7a1f1f]/5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#7a1f1f]/40 transition-all duration-300 flex items-center gap-2">
+              <FaHandshakeAngle className="w-[22px] h-[22px] text-[#b07b3a] group-hover:-translate-y-0.5 group-hover:text-[#7a1f1f] transition-all duration-300" />
               <span>Bergabung</span>
-              <span className="absolute bottom-0 left-0 w-0 h-[3px] bg-gradient-to-r from-[#7a1f1f] to-[#b07b3a] rounded-full transition-all duration-300 group-hover:w-full"></span>
+              <span className="absolute bottom-0 left-3 w-0 h-[3px] bg-gradient-to-r from-[#7a1f1f] to-[#b07b3a] rounded-full transition-all duration-300 group-hover:w-[calc(100%-24px)]"></span>
             </Link>
           </div>
 
           <div className="flex items-center gap-4">
             <div className="hidden md:block">
               <Link href="/donate">
-                <Button className="bg-gradient-to-r from-[#7a1f1f] to-[#9a2a2a] hover:from-[#651818] hover:to-[#7a1f1f] text-white rounded-full px-7 py-5 font-bold shadow-lg hover:shadow-xl hover:-translate-y-0.5 transition-all duration-300 flex items-center gap-2 border border-[#7a1f1f]/20">
+                <Button variant="brandMaroon" size="pill" className="px-7 py-5">
                   <Heart className="w-4 h-4 fill-white/20" /> Dukung Kami
                 </Button>
               </Link>
@@ -79,6 +79,8 @@ export function Navbar() {
               onClick={() => setIsMenuOpen(!isMenuOpen)}
               className="md:hidden p-2 text-[#7a1f1f] bg-white shadow-sm hover:bg-[#7a1f1f]/5 rounded-xl transition-all border border-[#14110f]/10"
               aria-label="Toggle menu"
+              aria-expanded={isMenuOpen}
+              aria-controls="mobile-nav-menu"
             >
               <div className="relative w-6 h-6 flex items-center justify-center">
                 {isMenuOpen ? <X className="w-5 h-5 absolute" /> : <Menu className="w-5 h-5 absolute" />}
@@ -88,18 +90,18 @@ export function Navbar() {
         </nav>
 
         {/* Mobile Menu Dropdown */}
-        <div className={`md:hidden overflow-hidden transition-all duration-300 ease-in-out ${isMenuOpen ? 'max-h-[400px] opacity-100 py-4 border-t border-[#7a1f1f]/10' : 'max-h-0 opacity-0'}`}>
+        <div id="mobile-nav-menu" className={`md:hidden overflow-hidden transition-all duration-300 ease-in-out ${isMenuOpen ? 'max-h-[400px] opacity-100 py-4 border-t border-[#7a1f1f]/10' : 'max-h-0 opacity-0'}`}>
           <div className="flex flex-col gap-2">
             <Link
               href="/programs"
-              className="text-sm font-bold text-[#8c6239] hover:text-[#7a1f1f] p-3 rounded-xl hover:bg-[#7a1f1f]/5 flex items-center gap-3 transition-colors group"
+              className="text-sm font-bold text-[#8c6239] hover:text-[#7a1f1f] p-3 rounded-xl hover:bg-[#7a1f1f]/5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#7a1f1f]/40 flex items-center gap-3 transition-colors group"
               onClick={() => setIsMenuOpen(false)}
             >
               <FaRocket className="w-5 h-5 text-[#b07b3a] group-hover:text-[#7a1f1f] group-hover:-translate-y-1 group-hover:translate-x-1 transition-transform" /> Program
             </Link>
             <Link
               href="/bergabung"
-              className="text-sm font-bold text-[#8c6239] hover:text-[#7a1f1f] p-3 rounded-xl hover:bg-[#7a1f1f]/5 flex items-center gap-3 transition-colors group"
+              className="text-sm font-bold text-[#8c6239] hover:text-[#7a1f1f] p-3 rounded-xl hover:bg-[#7a1f1f]/5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#7a1f1f]/40 flex items-center gap-3 transition-colors group"
               onClick={() => setIsMenuOpen(false)}
             >
               <FaHandshakeAngle className="w-[22px] h-[22px] text-[#b07b3a] group-hover:text-[#7a1f1f] group-hover:-translate-y-1 transition-transform" /> Bergabung
@@ -109,7 +111,7 @@ export function Navbar() {
                 href="/donate"
                 onClick={() => setIsMenuOpen(false)}
               >
-                <Button className="w-full bg-gradient-to-r from-[#7a1f1f] to-[#9a2a2a] text-white rounded-xl py-6 font-bold shadow-md hover:shadow-lg transition-all flex items-center justify-center gap-2">
+                <Button variant="brandMaroon" className="w-full rounded-xl py-6 flex items-center justify-center gap-2">
                   <Heart className="w-4 h-4 fill-white/20" /> Dukung Kami
                 </Button>
               </Link>

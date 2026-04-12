@@ -147,8 +147,8 @@ export default function HomePage() {
             sizes="100vw"
           />
           {/* Multi-layer overlay for depth */}
-          <div className="absolute inset-0 bg-gradient-to-b from-[#7a1f1f]/80 via-[#5d1414]/70 to-[#5d1414]/90" />
-          <div className="absolute inset-0 bg-gradient-to-r from-black/40 via-transparent to-black/40" />
+          <div className="absolute inset-0 bg-gradient-to-b from-[#7a1f1f]/65 via-[#5d1414]/55 to-[#5d1414]/75" />
+          <div className="absolute inset-0 bg-gradient-to-r from-black/25 via-transparent to-black/25" />
         </div>
 
         {/* Decorative elements */}
@@ -183,22 +183,23 @@ export default function HomePage() {
 
             {/* CTA Buttons */}
             <div className="flex flex-col sm:flex-row gap-5 justify-center items-center">
-              <Link href="/about">
+              <Link href="/programs">
                 <Button
-                  size="lg"
-                  className="h-auto bg-gradient-to-r from-[#b07b3a] to-[#d5a25a] hover:from-[#95652e] hover:to-[#b07b3a] text-white px-8 py-4 text-lg font-bold rounded-full shadow-[0_0_20px_rgba(176,123,58,0.4)] transition-all duration-300 hover:shadow-[0_0_30px_rgba(176,123,58,0.6)] hover:-translate-y-1"
+                  size="pillLg"
+                  variant="brandGold"
+                  className="h-auto px-8 py-4"
                 >
-                  Tentang Kami
+                  Mulai Belajar
                   <ArrowRight className="ml-2 w-5 h-5" />
                 </Button>
               </Link>
-              <Link href="/programs">
+              <Link href="/about">
                 <Button
-                  size="lg"
-                  variant="outline"
-                  className="h-auto border-2 border-white/40 text-white bg-white/5 hover:bg-white/10 px-8 py-4 text-lg font-bold rounded-full transition-all duration-300 hover:border-white hover:shadow-lg backdrop-blur-md hover:-translate-y-1"
+                  size="pillLg"
+                  variant="glassLight"
+                  className="h-auto px-8 py-4"
                 >
-                  Mulai Belajar
+                  Tentang Kami
                 </Button>
               </Link>
             </div>
