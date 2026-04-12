@@ -3,6 +3,21 @@ import Google from 'next-auth/providers/google'
 import { SupabaseAdapter } from '@auth/supabase-adapter'
 import { supabaseAdmin } from '@/lib/db/supabase'
 
+const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL
+const supabaseServiceRoleKey = process.env.SUPABASE_SERVICE_ROLE_KEY
+const hasSupabaseAdapterConfig = Boolean(supabaseUrl && supabaseServiceRoleKey)
+
+if (!hasSupabaseAdapterConfig) {
+  console.warn('[auth] Supabase adapter disabled: missing NEXT_PUBLIC_SUPABASE_URL or SUPABASE_SERVICE_ROLE_KEY')
+}
+
+const adapter = hasSupabaseAdapterConfig
+  ? SupabaseAdapter({
+      url: supabaseUrl!,
+      secret: supabaseServiceRoleKey!,
+    })
+  : undefined
+
 export const { handlers, auth, signIn, signOut } = NextAuth({
   providers: [
     Google({
@@ -10,23 +25,31 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
       clientSecret: process.env.GOOGLE_CLIENT_SECRET!,
     })
   ],
-  adapter: SupabaseAdapter({
-    url: process.env.NEXT_PUBLIC_SUPABASE_URL!,
-    secret: process.env.SUPABASE_SERVICE_ROLE_KEY!,
-  }),
+  adapter,
   callbacks: {
-    async session({ session, user }) {
-      if (session.user) {
-        session.user.id = user.id
-        // Fetch role from users table
-        const { data: userData } = await supabaseAdmin
-          .from('users')
-          .select('role')
-          .eq('id', user.id)
-          .single()
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        session.user.role = (userData as any)?.role || 'member'
+    async session({ session, user, token }) {
+      if (!session.user) {
+        return session
       }
+
+      const userId = user?.id || token?.sub
+      if (userId) {
+        session.user.id = userId
+      }
+
+      if (!hasSupabaseAdapterConfig || !userId) {
+        session.user.role = 'member'
+        return session
+      }
+
+      const { data: userData } = await supabaseAdmin
+        .from('users')
+        .select('role')
+        .eq('id', userId)
+        .single()
+
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      session.user.role = (userData as any)?.role || 'member'
       return session
     }
   },
@@ -35,6 +58,6 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
     error: '/login',
   },
   session: {
-    strategy: 'database'
+    strategy: hasSupabaseAdapterConfig ? 'database' : 'jwt'
   }
 })

@@ -26,7 +26,7 @@ export default function DashboardLayout({
                 Acara Saya
               </a>
               <a
-                href="/dashboard/progress"
+                href="/dashboard"
                 className="block px-4 py-2 rounded-lg hover:bg-[#fbf7f0] text-[#14110f]"
               >
                 Progres Belajar

@@ -17,7 +17,7 @@ export default async function AdminDashboardPage() {
           </div>
         </Link>
 
-        <Link href="/admin/donations">
+        <Link href="/admin/events">
           <div className="bg-[#fbf7f0] p-6 rounded-xl hover:shadow-md transition-shadow">
             <p className="text-sm text-[#14110f]/60">Total Donasi</p>
             <p className="text-3xl font-bold text-[#7a1f1f]">
@@ -49,10 +49,10 @@ export default async function AdminDashboardPage() {
           </Link>
 
           <Link
-            href="/admin/contents/new"
+            href="/admin/events/new"
             className="px-6 py-3 bg-[#fbf7f0] text-[#14110f] rounded-lg hover:bg-[#f6f1e9] transition-colors"
           >
-            + Buat Konten Baru
+            + Buat Acara Baru
           </Link>
         </div>
       </div>

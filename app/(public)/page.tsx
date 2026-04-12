@@ -19,7 +19,8 @@ import {
   FileText,
   Mail,
   Phone,
-  ChevronRight
+  ChevronRight,
+  ChevronDown
 } from 'lucide-react'
 import { motion } from 'framer-motion'
 
@@ -77,7 +78,7 @@ const pillars = [
   {
     number: '01',
     title: 'Pendidikan & Karakter',
-    description: 'Mencetak intelektual muslim yang tidak hanya cerdas secara akademis, tetapi juga memiliki akhlak mulia dan kepemimpinan yang berintegritas.',
+    description: 'Program terstruktur untuk mencetak intelektual berakhlak mulia dan berwawasan luas.',
     icon: GraduationCap,
     color: 'from-[#7a1f1f] to-[#9a2f2f]',
     image: '/images/pilar-education.png'
@@ -85,7 +86,7 @@ const pillars = [
   {
     number: '02',
     title: 'Literasi & Dakwah Digital',
-    description: 'Memanfaatkan kekuatan digital untuk menyebarkan ilmu dan nilai-nilai keislaman secara masif, kreatif, dan relevan dengan zaman.',
+    description: 'Pemanfaatan teknologi untuk menyebarkan ilmu pengetahuan dan nilai-nilai Islam secara relevan dan menjangkau lebih luas.',
     icon: Monitor,
     color: 'from-[#b07b3a] to-[#d5a25a]',
     image: '/images/pilar-digital.jpeg'
@@ -93,7 +94,7 @@ const pillars = [
   {
     number: '03',
     title: 'Kolaborasi & Aksi Sosial',
-    description: 'Membangun jaringan kebaikan melalui kerja sama strategis dan aksi nyata yang memberikan dampak positif bagi masyarakat.',
+    description: 'Membangun jaringan kebaikan dan menghadirkan dampak nyata di tengah masyarakat.',
     icon: Handshake,
     color: 'from-[#5d1414] to-[#7a1f1f]',
     image: '/images/pilar-kolaborasi.png'
@@ -133,7 +134,7 @@ export default function HomePage() {
   return (
     <div className="overflow-hidden">
       {/* Hero Section - With Al-Quds background image */}
-      <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
+      <section className="relative h-[calc(100vh-5rem)] min-h-[600px] flex items-center justify-center overflow-hidden">
         {/* Background Image with Overlay */}
         <div className="absolute inset-0">
           <Image
@@ -160,53 +161,42 @@ export default function HomePage() {
           backgroundSize: '60px 60px'
         }} />
 
-        <div className="relative z-10 max-w-5xl mx-auto px-4 text-center">
+        <div className="relative z-10 max-w-5xl mx-auto px-4 text-center -translate-y-4">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
           >
-            {/* Tagline badge */}
-            <div className="inline-flex items-center gap-2 px-4 py-2 bg-[#b07b3a]/20 backdrop-blur-sm rounded-full mb-8 border border-[#b07b3a]/30">
-              <Sparkles className="w-4 h-4 text-[#b07b3a]" />
-              <span className="text-sm font-medium text-white tracking-wide">
-                Yayasan Saladin Peradaban Berilmu
-              </span>
-            </div>
-
             {/* Main heading */}
-            <h1 className="font-serif text-5xl md:text-7xl lg:text-8xl font-bold text-white mb-6 leading-[1.1] drop-shadow-lg">
-              Learn History,
+            <h1 className="font-serif text-4xl md:text-6xl lg:text-7xl font-bold text-white mb-4 leading-[1.2] drop-shadow-2xl">
+              Membangun Kembali
               <br />
-              <span className="text-[#b07b3a]">Repeat Victory</span>
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#b07b3a] to-[#f4d092] drop-shadow-lg">
+                Peradaban Berilmu
+              </span>
             </h1>
 
             {/* Subtitle */}
-            <p className="text-lg md:text-xl text-white/90 max-w-2xl mx-auto mb-4 font-medium drop-shadow">
-              Gerakan Peradaban Berilmu
-            </p>
-
-            <p className="text-base md:text-lg text-white/70 max-w-xl mx-auto mb-10 leading-relaxed">
-              Sejarah bukan dekorasi. Ia senjata: untuk membentuk karakter,
-              menajamkan visi, dan melahirkan kemenangan yang beradab.
+            <p className="text-base md:text-xl text-white/90 max-w-3xl mx-auto mb-8 leading-relaxed font-medium drop-shadow-md">
+              Yayasan yang berfokus pada dakwah edukatif, pembinaan generasi muda, dan pengembangan peradaban Islam berbasis ilmu, karakter, dan aksi nyata.
             </p>
 
             {/* CTA Buttons */}
-            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+            <div className="flex flex-col sm:flex-row gap-5 justify-center items-center">
               <Link href="/about">
                 <Button
                   size="lg"
-                  className="bg-[#b07b3a] hover:bg-[#d5a25a] text-white px-8 py-6 text-base rounded-full shadow-lg shadow-[#b07b3a]/30 transition-all hover:shadow-xl hover:shadow-[#b07b3a]/40 hover:-translate-y-0.5"
+                  className="h-auto bg-gradient-to-r from-[#b07b3a] to-[#d5a25a] hover:from-[#95652e] hover:to-[#b07b3a] text-white px-8 py-4 text-lg font-bold rounded-full shadow-[0_0_20px_rgba(176,123,58,0.4)] transition-all duration-300 hover:shadow-[0_0_30px_rgba(176,123,58,0.6)] hover:-translate-y-1"
                 >
-                  Pelajari Kami
-                  <ArrowRight className="ml-2 w-4 h-4" />
+                  Tentang Kami
+                  <ArrowRight className="ml-2 w-5 h-5" />
                 </Button>
               </Link>
               <Link href="/programs">
                 <Button
                   size="lg"
                   variant="outline"
-                  className="border-2 border-white/30 text-white hover:bg-white/10 px-8 py-6 text-base rounded-full transition-all hover:border-white/50 backdrop-blur-sm"
+                  className="h-auto border-2 border-white/40 text-white bg-white/5 hover:bg-white/10 px-8 py-4 text-lg font-bold rounded-full transition-all duration-300 hover:border-white hover:shadow-lg backdrop-blur-md hover:-translate-y-1"
                 >
                   Mulai Belajar
                 </Button>
@@ -215,204 +205,30 @@ export default function HomePage() {
           </motion.div>
         </div>
 
-        {/* Scroll indicator */}
+        {/* Highly Visible Scroll indicator */}
         <motion.div
-          className="absolute bottom-8 left-1/2 -translate-x-1/2"
-          animate={{ y: [0, 8, 0] }}
-          transition={{ duration: 2, repeat: Infinity }}
+          className="absolute bottom-6 left-1/2 -translate-x-1/2 z-20 cursor-pointer flex flex-col items-center gap-2 group"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 1, duration: 1 }}
+          onClick={() => window.scrollTo({ top: window.innerHeight, behavior: 'smooth' })}
         >
-          <div className="w-6 h-10 border-2 border-white/30 rounded-full flex justify-center pt-2">
-            <div className="w-1.5 h-3 bg-white/50 rounded-full" />
+          <div className="relative flex items-center justify-center mt-1">
+            {/* Pulsing ring to attract eye */}
+            <div className="absolute inset-0 bg-[#b07b3a] rounded-full animate-ping opacity-30 duration-1000" />
+
+            <motion.div
+              animate={{ y: [0, 10, 0] }}
+              transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
+              className="w-14 h-14 rounded-full bg-[#b07b3a]/20 backdrop-blur-md flex items-center justify-center border-2 border-[#b07b3a]/60 group-hover:bg-[#b07b3a]/40 group-hover:scale-110 transition-all shadow-[0_0_25px_rgba(176,123,58,0.6)] group-hover:shadow-[0_0_35px_rgba(244,208,146,0.9)] relative z-10"
+            >
+              <ChevronDown className="w-8 h-8 text-[#f4d092]" />
+            </motion.div>
           </div>
         </motion.div>
 
         {/* Bottom gradient fade */}
         <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-[#f6f1e9] to-transparent" />
-      </section>
-
-      {/* Who We Are Section - With Image */}
-      <section className="py-24 md:py-32 relative">
-        <div className="max-w-6xl mx-auto px-4">
-          <div className="grid lg:grid-cols-2 gap-16 items-center">
-            {/* Left content */}
-            <motion.div
-              initial={{ opacity: 0, x: -30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8 }}
-            >
-              <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-[#b07b3a]/10 rounded-full mb-6">
-                <Target className="w-4 h-4 text-[#b07b3a]" />
-                <span className="text-sm font-medium text-[#b07b3a]">Siapa Kami?</span>
-              </div>
-
-              <h2 className="font-serif text-4xl md:text-5xl font-bold text-[#7a1f1f] mb-6 leading-tight">
-                Membangun Generasi yang Kokoh Berkarakter
-              </h2>
-
-              <div className="space-y-6 text-[#14110f]/70 leading-relaxed">
-                <p className="text-lg">
-                  Bayangkan sebuah generasi muda yang kokoh karakternya, dalam ilmunya,
-                  dan terinspirasi oleh nilai-nilai peradaban Islam.
-                </p>
-                <p>
-                  GenSaladin hadir sebagai wadah pembinaan yang berkomitmen membentuk
-                  pemuda-pemudi Indonesia menjadi individu yang tidak hanya cerdas secara
-                  akademis, tetapi juga memiliki fondasi spiritual dan moral yang kuat.
-                </p>
-              </div>
-
-              {/* Legal badge */}
-              <div className="mt-8 p-4 bg-[#fbf7f0] rounded-xl border border-[#7a1f1f]/10">
-                <div className="flex items-start gap-3">
-                  <Shield className="w-5 h-5 text-[#7a1f1f] mt-0.5 flex-shrink-0" />
-                  <div>
-                    <p className="text-sm font-semibold text-[#7a1f1f]">Yayasan Resmi</p>
-                    <p className="text-sm text-[#14110f]/60">
-                      AHU-0024132.AH.01.04.TAHUN 2025
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </motion.div>
-
-            {/* Right content - Image Card */}
-            <motion.div
-              initial={{ opacity: 0, x: 30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8, delay: 0.2 }}
-              className="relative"
-            >
-              {/* Main Image */}
-              <div className="relative rounded-2xl overflow-hidden shadow-2xl">
-                <div className="aspect-[4/3] relative">
-                  <Image
-                    src="/images/jerusalem-hillside.jpeg"
-                    alt="Jerusalem Hillside - Kota Peradaban"
-                    fill
-                    className="object-cover"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#5d1414]/60 via-transparent to-[#5d1414]/20" />
-                </div>
-
-                {/* Caption overlay - positioned at top */}
-                <div className="absolute top-0 left-0 right-0 p-6 bg-gradient-to-b from-[#5d1414]/60 to-transparent">
-                  <p className="text-white font-serif text-lg md:text-xl italic drop-shadow-lg">
-                    &ldquo;Membangkitkan kesadaran keumatan melalui tadabbur sejarah&rdquo;
-                  </p>
-                </div>
-              </div>
-
-              {/* Floating stat card - positioned at bottom right */}
-              <div className="absolute -bottom-6 -right-6 bg-[#7a1f1f] text-white p-5 rounded-xl shadow-xl">
-                <p className="text-4xl font-bold">2025</p>
-                <p className="text-sm text-white/80">Tahun Berdiri</p>
-              </div>
-
-              {/* Decorative element */}
-              <div className="absolute -top-4 -left-4 w-24 h-24 border-2 border-[#b07b3a]/30 rounded-xl -z-10" />
-            </motion.div>
-          </div>
-        </div>
-      </section>
-
-      {/* Problem Statement Section - Compact Design */}
-      <section className="py-16 md:py-20 bg-[#5d1414] relative overflow-hidden">
-        <div className="max-w-4xl mx-auto px-4 relative z-10">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="text-center"
-          >
-            <Quote className="w-10 h-10 text-[#b07b3a] mx-auto mb-6" />
-
-            <h2 className="font-serif text-2xl md:text-3xl lg:text-4xl font-bold text-white mb-8 leading-tight max-w-3xl mx-auto">
-              Mereka melek gadget, tapi buta sejarah; aktif di media sosial, tapi rapuh secara nilai.
-            </h2>
-
-            <div className="flex flex-wrap justify-center gap-4 md:gap-8 mb-8">
-              <div className="flex items-center gap-2 bg-white/10 px-4 py-2 rounded-full">
-                <div className="w-2 h-2 bg-[#b07b3a] rounded-full" />
-                <p className="text-white/90 text-sm">61% literasi sejarah rendah</p>
-              </div>
-              <div className="flex items-center gap-2 bg-white/10 px-4 py-2 rounded-full">
-                <div className="w-2 h-2 bg-[#b07b3a] rounded-full" />
-                <p className="text-white/90 text-sm">Tanpa fondasi nilai</p>
-              </div>
-              <div className="flex items-center gap-2 bg-white/10 px-4 py-2 rounded-full">
-                <div className="w-2 h-2 bg-[#b07b3a] rounded-full" />
-                <p className="text-white/90 text-sm">Konten edukatif minim</p>
-              </div>
-            </div>
-
-            <p className="text-white/60 italic text-sm md:text-base">
-              Dibutuhkan ekosistem: ilmu yang shahih, cara penyampaian yang relevan, dan komunitas yang sehat.
-            </p>
-          </motion.div>
-        </div>
-
-        {/* Subtle background pattern */}
-        <div className="absolute inset-0 opacity-[0.02]" style={{
-          backgroundImage: `url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23ffffff' fill-opacity='1' fill-rule='evenodd'%3E%3Cpath d='M0 40L40 0H20L0 20M40 40V20L20 40'/%3E%3C/g%3E%3C/svg%3E")`,
-          backgroundSize: '40px 40px'
-        }} />
-      </section>
-
-      {/* Our Mission Section */}
-      <section className="py-24 md:py-32 bg-[#fbf7f0] relative">
-        {/* Background pattern */}
-        <div className="absolute inset-0 opacity-[0.03]" style={{
-          backgroundImage: `url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%237a1f1f' fill-opacity='1' fill-rule='evenodd'%3E%3Cpath d='M0 40L40 0H20L0 20M40 40V20L20 40'/%3E%3C/g%3E%3C/svg%3E")`,
-          backgroundSize: '40px 40px'
-        }} />
-
-        <div className="max-w-6xl mx-auto px-4 relative z-10">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="text-center mb-16"
-          >
-            <span className="inline-block px-4 py-1.5 bg-[#7a1f1f]/10 text-[#7a1f1f] text-sm font-medium rounded-full mb-4">
-              Misi Kami
-            </span>
-            <h2 className="font-serif text-4xl md:text-5xl font-bold text-[#7a1f1f] mb-4">
-              Enam Pilar Gerakan
-            </h2>
-            <p className="text-[#14110f]/60 max-w-2xl mx-auto">
-              Membangun peradaban berilmu melalui pendekatan yang komprehensif dan berkelanjutan
-            </p>
-          </motion.div>
-
-          <motion.div
-            className="grid md:grid-cols-2 lg:grid-cols-3 gap-6"
-            variants={staggerContainer}
-            initial="initial"
-            whileInView="animate"
-            viewport={{ once: true }}
-          >
-            {missions.map((mission, index) => (
-              <motion.div
-                key={index}
-                variants={fadeInUp}
-                className="group bg-[#f6f1e9] p-8 rounded-2xl border border-[#14110f]/5 hover:border-[#7a1f1f]/20 transition-all duration-300 hover:shadow-xl hover:shadow-[#7a1f1f]/5 hover:-translate-y-1"
-              >
-                <div className="w-14 h-14 bg-gradient-to-br from-[#7a1f1f] to-[#5d1414] rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
-                  <mission.icon className="w-7 h-7 text-white" />
-                </div>
-                <h3 className="font-serif text-xl font-bold text-[#7a1f1f] mb-3">
-                  {mission.title}
-                </h3>
-                <p className="text-[#14110f]/60 text-sm leading-relaxed">
-                  {mission.description}
-                </p>
-              </motion.div>
-            ))}
-          </motion.div>
-        </div>
       </section>
 
       {/* Three Pillars Section - With Images */}
@@ -424,11 +240,8 @@ export default function HomePage() {
             viewport={{ once: true }}
             className="text-center mb-16"
           >
-            <span className="inline-block px-4 py-1.5 bg-[#b07b3a]/10 text-[#b07b3a] text-sm font-medium rounded-full mb-4">
-              Tiga Pilar
-            </span>
             <h2 className="font-serif text-4xl md:text-5xl font-bold text-[#7a1f1f] mb-4">
-              Fondasi Peradaban
+              Tiga Pilar Aktivitas
             </h2>
             <p className="text-[#14110f]/60 max-w-2xl mx-auto">
               Tiga pilar utama yang menjadi landasan setiap aktivitas dan program GenSaladin
@@ -511,153 +324,6 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Meet the Team Section */}
-      <section className="py-24 md:py-32 bg-[#fbf7f0] relative">
-        <div className="max-w-6xl mx-auto px-4">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="text-center mb-16"
-          >
-            <span className="inline-block px-4 py-1.5 bg-[#7a1f1f]/10 text-[#7a1f1f] text-sm font-medium rounded-full mb-4">
-              Tim Kami
-            </span>
-            <h2 className="font-serif text-4xl md:text-5xl font-bold text-[#7a1f1f] mb-4">
-              Kenali Penggerak
-            </h2>
-            <p className="text-[#14110f]/60 max-w-2xl mx-auto">
-              Individu-individu yang berdedikasi membentuk generasi berkarakter
-            </p>
-          </motion.div>
-
-          <motion.div
-            className="grid md:grid-cols-3 gap-8"
-            variants={staggerContainer}
-            initial="initial"
-            whileInView="animate"
-            viewport={{ once: true }}
-          >
-            {team.map((member, index) => (
-              <motion.div
-                key={index}
-                variants={fadeInUp}
-                className="group text-center"
-              >
-                {/* Avatar */}
-                <div className="relative mx-auto w-40 h-40 mb-6">
-                  <div className="absolute inset-0 bg-gradient-to-br from-[#7a1f1f] to-[#b07b3a] rounded-full opacity-20 group-hover:opacity-30 transition-opacity" />
-                  <div className="absolute inset-1 rounded-full overflow-hidden bg-[#f6f1e9]">
-                    <Image
-                      src={member.image}
-                      alt={member.name}
-                      fill
-                      className="object-cover object-top"
-                    />
-                  </div>
-                  {/* Decorative ring */}
-                  <div className="absolute inset-0 rounded-full border-2 border-dashed border-[#b07b3a]/30 group-hover:rotate-180 transition-transform duration-700" />
-                </div>
-
-                {/* Info */}
-                <h3 className="font-serif text-xl font-bold text-[#7a1f1f] mb-1">
-                  {member.name}
-                </h3>
-                <p className="text-[#b07b3a] text-sm font-medium mb-3">
-                  {member.role}
-                </p>
-                <p className="text-[#14110f]/60 text-sm max-w-xs mx-auto">
-                  {member.description}
-                </p>
-              </motion.div>
-            ))}
-          </motion.div>
-        </div>
-      </section>
-
-      {/* Impact & Transparency Section */}
-      <section className="py-24 md:py-32 relative">
-        <div className="max-w-6xl mx-auto px-4">
-          <div className="grid lg:grid-cols-2 gap-16 items-center">
-            {/* Stats */}
-            <motion.div
-              initial={{ opacity: 0, x: -30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8 }}
-            >
-              <span className="inline-block px-4 py-1.5 bg-[#b07b3a]/10 text-[#b07b3a] text-sm font-medium rounded-full mb-4">
-                Dampak & Transparansi
-              </span>
-              <h2 className="font-serif text-4xl md:text-5xl font-bold text-[#7a1f1f] mb-6">
-                Setiap Langkah Tercatat
-              </h2>
-              <p className="text-[#14110f]/70 leading-relaxed mb-10">
-                Kami berkomitmen untuk transparan dalam setiap aktivitas dan penggunaan
-                sumber daya. Kepercayaan Anda adalah amanah yang kami jaga dengan penuh
-                tanggung jawab.
-              </p>
-
-              {/* Stats grid */}
-              <div className="grid grid-cols-3 gap-6">
-                {stats.map((stat, index) => (
-                  <div key={index} className="text-center p-4 bg-[#fbf7f0] rounded-xl">
-                    <stat.icon className="w-6 h-6 text-[#b07b3a] mx-auto mb-2" />
-                    <p className="text-2xl md:text-3xl font-bold text-[#7a1f1f]">{stat.value}</p>
-                    <p className="text-xs text-[#14110f]/60 mt-1">{stat.label}</p>
-                  </div>
-                ))}
-              </div>
-            </motion.div>
-
-            {/* Transparency card */}
-            <motion.div
-              initial={{ opacity: 0, x: 30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8, delay: 0.2 }}
-            >
-              <div className="bg-[#7a1f1f] text-white p-8 md:p-10 rounded-2xl shadow-2xl">
-                <div className="flex items-center gap-3 mb-6">
-                  <FileText className="w-6 h-6 text-[#b07b3a]" />
-                  <h3 className="font-serif text-2xl font-bold">Transparansi</h3>
-                </div>
-
-                <p className="text-white/80 mb-8 leading-relaxed">
-                  Lihat laporan lengkap tentang aktivitas, keuangan, dan perkembangan
-                  program GenSaladin. Kami percaya bahwa transparansi adalah kunci
-                  kepercayaan dan keberlanjutan.
-                </p>
-
-                <div className="space-y-4">
-                  <Link
-                    href="/transparency"
-                    className="flex items-center justify-between p-4 bg-white/10 rounded-xl hover:bg-white/20 transition-colors group"
-                  >
-                    <span className="font-medium">Laporan Keuangan</span>
-                    <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-                  </Link>
-                  <Link
-                    href="/transparency"
-                    className="flex items-center justify-between p-4 bg-white/10 rounded-xl hover:bg-white/20 transition-colors group"
-                  >
-                    <span className="font-medium">Dokumentasi Kegiatan</span>
-                    <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-                  </Link>
-                  <Link
-                    href="/transparency"
-                    className="flex items-center justify-between p-4 bg-white/10 rounded-xl hover:bg-white/20 transition-colors group"
-                  >
-                    <span className="font-medium">Statistik Program</span>
-                    <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-                  </Link>
-                </div>
-              </div>
-            </motion.div>
-          </div>
-        </div>
-      </section>
-
       {/* Call to Action Section */}
       <section className="py-24 md:py-32 relative overflow-hidden">
         {/* Background */}
@@ -686,60 +352,45 @@ export default function HomePage() {
           backgroundSize: '60px 60px'
         }} />
 
-        <div className="max-w-4xl mx-auto px-4 relative z-10 text-center">
+        <div className="max-w-4xl mx-auto px-4 relative z-10 text-center flex flex-col items-center">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
+            className="flex flex-col items-center"
           >
-            <h2 className="font-serif text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6">
+            {/* The Quote Area */}
+            <div className="relative mb-10 mt-4 inline-block">
+              <Quote className="absolute -top-4 -left-6 w-10 h-10 text-[#f4d092] opacity-30 -z-10" />
+              <h2 className="font-serif text-3xl md:text-5xl font-bold italic text-white leading-tight tracking-wide drop-shadow-xl">
+                &ldquo;<span className="text-transparent bg-clip-text bg-gradient-to-r from-[#f4d092] to-[#b07b3a]">Learn History,</span>
+                <span className="block mt-2">Repeat Victory.&rdquo;</span>
+              </h2>
+            </div>
+            
+            <div className="w-24 h-1 bg-gradient-to-r from-transparent via-[#b07b3a] to-transparent mx-auto rounded-full mb-10 opacity-50" />
+
+            <h3 className="font-serif text-3xl md:text-4xl font-bold text-white mb-6">
               Bergabung dengan Gerakan
-            </h2>
-            <p className="text-xl text-white/80 max-w-2xl mx-auto mb-10 leading-relaxed">
+            </h3>
+            
+            <p className="text-lg md:text-xl text-white/80 max-w-2xl mx-auto mb-12 leading-relaxed font-medium">
               Bersama-sama kita bangun generasi yang kokoh berkarakter,
-              dalam ilmunya, dan inspiratif.
+              dalam ilmunya, dan inspiratif. Jadilah bagian dari pembangun peradaban.
             </p>
 
-            {/* CTA Buttons */}
-            <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
-              <Link href="/register">
+            {/* Focus CTA Button */}
+            <div className="flex justify-center mb-6">
+              <Link href="/bergabung">
                 <Button
                   size="lg"
-                  className="bg-white text-[#7a1f1f] hover:bg-[#fbf7f0] px-8 py-6 text-base rounded-full shadow-xl transition-all hover:shadow-2xl hover:-translate-y-0.5"
+                  className="h-auto bg-gradient-to-r from-[#b07b3a] to-[#d5a25a] hover:from-[#95652e] hover:to-[#b07b3a] text-white px-10 py-5 text-xl font-bold rounded-full shadow-[0_0_20px_rgba(176,123,58,0.5)] transition-all duration-300 hover:shadow-[0_0_35px_rgba(176,123,58,0.7)] hover:-translate-y-1"
                 >
-                  Daftar Sekarang
-                  <ArrowRight className="ml-2 w-4 h-4" />
+                  Bergabung Sekarang
+                  <ArrowRight className="ml-3 w-6 h-6" />
                 </Button>
               </Link>
-              <Link href="/donate">
-                <Button
-                  size="lg"
-                  variant="outline"
-                  className="border-2 border-white/30 text-white hover:bg-white/10 px-8 py-6 text-base rounded-full transition-all"
-                >
-                  Dukung Kami
-                </Button>
-              </Link>
-            </div>
-
-            {/* Contact info */}
-            <div className="flex flex-col sm:flex-row gap-6 justify-center items-center text-white/70">
-              <a
-                href="mailto:info@gensaladin.id"
-                className="flex items-center gap-2 hover:text-white transition-colors"
-              >
-                <Mail className="w-4 h-4" />
-                <span>info@gensaladin.id</span>
-              </a>
-              <span className="hidden sm:block">|</span>
-              <a
-                href="tel:+6281944233210"
-                className="flex items-center gap-2 hover:text-white transition-colors"
-              >
-                <Phone className="w-4 h-4" />
-                <span>+62 819 4423 3210</span>
-              </a>
             </div>
           </motion.div>
         </div>

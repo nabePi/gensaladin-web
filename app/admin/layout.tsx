@@ -21,8 +21,8 @@ export default async function AdminLayout({
             <Link href="/admin" className="font-bold text-lg">Admin Dashboard</Link>
             <nav className="flex gap-6">
               <Link href="/admin/events" className="hover:text-[#fbf7f0]">Acara</Link>
-              <Link href="/admin/contents" className="hover:text-[#fbf7f0]">Konten</Link>
-              <Link href="/admin/donations" className="hover:text-[#fbf7f0]">Donasi</Link>
+              <Link href="/admin/events" className="hover:text-[#fbf7f0]">Konten</Link>
+              <Link href="/admin/events" className="hover:text-[#fbf7f0]">Donasi</Link>
               <Link href="/" className="hover:text-[#fbf7f0]">← Kembali ke Situs</Link>
             </nav>
           </div>
