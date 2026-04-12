@@ -159,6 +159,16 @@ export async function checkDonationStatus(orderId: string) {
 }
 
 export async function getActiveCampaigns() {
+  const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL ?? ''
+  const isPlaceholderSupabase =
+    !supabaseUrl ||
+    supabaseUrl.includes('placeholder.supabase.co') ||
+    supabaseUrl.includes('your-project.supabase.co')
+
+  if (isPlaceholderSupabase) {
+    return []
+  }
+
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const { data, error } = await (supabase as any)
     .from('campaigns')
@@ -167,7 +177,11 @@ export async function getActiveCampaigns() {
     .order('created_at', { ascending: false })
 
   if (error) {
-    console.error('Error fetching campaigns:', error)
+    console.warn('Unable to fetch campaigns', {
+      message: error.message ?? null,
+      details: error.details ?? null,
+      code: error.code ?? null,
+    })
     return []
   }
 
