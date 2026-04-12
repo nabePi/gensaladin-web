@@ -76,7 +76,7 @@ export default async function DonasiPage() {
           <div className="grid lg:grid-cols-2 gap-6">
             <article className="bg-gradient-to-br from-white to-[#fbf7f0] border border-[#14110f]/10 rounded-2xl p-7 shadow-sm hover:shadow-md transition-all duration-300">
               <div className="flex items-center justify-between gap-4 mb-4">
-                <p className="text-sm font-bold text-[#7a1f1f]">A. Store</p>
+                <p className="text-sm font-bold text-[#7a1f1f]">Store</p>
                 <span className="text-xs font-semibold bg-[#b07b3a]/15 text-[#7a1f1f] px-3 py-1 rounded-full">
                   Produk • Edukasi • Dakwah
                 </span>
@@ -114,7 +114,7 @@ export default async function DonasiPage() {
 
             <article className="bg-gradient-to-br from-white to-[#fbf7f0] border border-[#14110f]/10 rounded-2xl p-7 shadow-sm hover:shadow-md transition-all duration-300">
               <div className="flex items-center justify-between gap-4 mb-4">
-                <p className="text-sm font-bold text-[#7a1f1f]">B. Fundraising</p>
+                <p className="text-sm font-bold text-[#7a1f1f]">Fundraising</p>
                 <span className="text-xs font-semibold bg-[#7a1f1f]/10 text-[#7a1f1f] px-3 py-1 rounded-full">
                   Transparan & Terukur
                 </span>
